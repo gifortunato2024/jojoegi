@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+pip install matplotlib 
 
 # Carrega o arquivo Excel a partir do repositório
 @st.cache
