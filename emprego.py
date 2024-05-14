@@ -2,10 +2,10 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Carrega o arquivo Excel
+# Carrega o arquivo Excel a partir do repositório
 @st.cache
-def load_data(file):
-    df = pd.read_excel(file)
+def load_data():
+    df = pd.read_excel("Dados - Empregos.xlsx")
     return df
 
 # Função para plotar o gráfico
@@ -25,16 +25,14 @@ def main():
     st.title('Análise de Salários por Cargo')
 
     # Carrega os dados
-    file = st.file_uploader("Carregar arquivo Excel", type=['xlsx'])
-    if file is not None:
-        data = load_data(file)
-        job_list = data['Vaga'].unique()
+    data = load_data()
+    job_list = data['Vaga'].unique()
 
-        # Seleciona o cargo
-        selected_job = st.selectbox('Selecione o cargo:', job_list)
+    # Seleciona o cargo
+    selected_job = st.selectbox('Selecione o cargo:', job_list)
 
-        # Mostra o gráfico
-        plot_graph(data, selected_job)
+    # Mostra o gráfico
+    plot_graph(data, selected_job)
 
 if __name__ == "__main__":
     main()
